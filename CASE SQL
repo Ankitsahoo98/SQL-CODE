@@ -1,0 +1,24 @@
+
+/*
+Case Statement
+*/
+
+SELECT FirstName, LastName, Age,
+CASE 
+	WHEN Age > 30 Then 'Old'
+	WHEN AGE BETWEEN 27 AND 30 THEN 'Young'
+	ELSE 'Baby'
+END
+FROM [SQL Basics].dbo.EmployeeDemographics
+Where Age is not null
+Order By Age
+
+SELECT FirstName, LastName, Age,
+CASE 
+	WHEN Age > 30 Then 'Old'
+	WHEN AGE = 30 THEN 'Young'
+	ELSE 'Baby'
+END
+FROM [SQL Basics].dbo.EmployeeDemographics
+Where Age is not null
+Order By Age
