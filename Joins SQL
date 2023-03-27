@@ -1,0 +1,65 @@
+/*
+Inner Joins, Full/Left/Right Outer Joins
+*/
+
+Select *
+FROM [SQL Basics].dbo.EmployeeDemographics
+
+
+Select *
+FROM [SQL Basics].dbo.EmployeeSalary
+
+INSERT Into [SQL Basics].dbo.EmployeeDemographics VALUES
+(1011, 'Ryan', 'Howard', 26, 'Male'),
+(NULL, 'Holly', 'Flax', NULL, NULL ),
+(1013, 'Darryl', 'Philbin', NULL, 'Male')
+
+INSERT Into [SQL Basics].dbo.EmployeeSalary VALUES
+(1010, NULL, 47000),
+(NULL, 'Salesman', 43000)
+
+SELECT *
+FROM [SQL Basics].dbo.EmployeeDemographics
+ Inner Join [SQL Basics].dbo.EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+SELECT *
+FROM [SQL Basics].dbo.EmployeeDemographics
+ LEFT OUTER Join [SQL Basics].dbo.EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+
+SELECT *
+FROM [SQL Basics].dbo.EmployeeDemographics
+ Right OUTER Join [SQL Basics].dbo.EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+SELECT *
+FROM [SQL Basics].dbo.EmployeeDemographics
+ Full OUTER Join [SQL Basics].dbo.EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+SELECT EmployeeSalary.EmployeeID, FirstName, LastName, JobTitle, Salary
+FROM [SQL Basics].dbo.EmployeeDemographics
+  Left Outer Join [SQL Basics].dbo.EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+/*
+USE CASE - DEDUCT PAY FOR A EMPLOYEE TO MEET THE QUATERLY QUOTA
+*/
+
+SELECT EmployeeDemographics.EmployeeID, FirstName, LastName, Salary
+FROM [SQL Basics].dbo.EmployeeDemographics
+   Join [SQL Basics].dbo.EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+/*
+USE CASE - VIEW AVERAGE SALARY OF SALESMAN
+*/
+
+SELECT JobTitle, AVG(Salary)
+FROM [SQL Basics].dbo.EmployeeDemographics
+   Join [SQL Basics].dbo.EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+WHERE JobTitle = 'Salesman'
+GROUP BY JobTitle 
